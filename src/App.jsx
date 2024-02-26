@@ -16,19 +16,17 @@ const todoList = [
 ];
 
 function App() {
-  const listItems = todoList.map(item => {
-    return (
-      <li key={item.id}>
-        {item.title}
-      </li>
-      );
-  })
-
   return (
     <>
       <h1>Todo List</h1>
       <ul>
-        {listItems}
+        {todoList.map(item => {
+          return (
+            <li key={item.id}>
+              {item.title}
+            </li>
+          );
+        })}
       </ul>
     </>
   )
