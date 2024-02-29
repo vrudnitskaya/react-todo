@@ -13,7 +13,7 @@ const todoList = [
     },
 ];
 
-function TodoList() {
+const TodoList = () => {
     return (
         <ul>
             {todoList.map(item => {

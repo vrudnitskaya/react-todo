@@ -1,5 +1,4 @@
-
-function AddTodoForm() {
+const AddTodoForm = () => {
     return (
         <form>
             <label htmlFor="todoTitle">Title</label>
