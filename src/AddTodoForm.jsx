@@ -1,8 +1,12 @@
-const AddTodoForm = () => {
+const AddTodoForm = (props) => {
     const handleAddTodo = (event) => {
         event.preventDefault();
+        
         const todoTitle = document.querySelector('[name="title"]').value;
         console.log(todoTitle);
+
+        props.onAddTodo(todoTitle);
+        
         document.querySelector('[name="title"]').value = '';
     };
     
