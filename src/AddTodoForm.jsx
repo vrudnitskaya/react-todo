@@ -1,9 +1,9 @@
 const AddTodoForm = () => {
     const handleAddTodo = (event) => {
         event.preventDefault();
-        const todoTitle = document.querySelector('#todoTitle').value;
+        const todoTitle = document.querySelector('[name="title"]').value;
         console.log(todoTitle);
-        document.querySelector('#todoTitle').value = '';
+        document.querySelector('[name="title"]').value = '';
     };
     
     return (
