@@ -1,7 +1,7 @@
 const TodoListItem = (props) => {
     return (
         <li>
-            {props.todo}
+            {props.todo.title}
         </li>
     );
 }
