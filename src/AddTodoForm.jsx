@@ -21,8 +21,6 @@ const AddTodoForm = ({onAddTodo}) => {
                 id="todoTitle"
                 type="text"
                 name="title"
-                label="Title: "
-                isFocused
                 onChange={handleTitleChange} 
                 value={todoTitle}
                 >

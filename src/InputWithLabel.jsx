@@ -3,10 +3,8 @@ import { useEffect, useRef } from "react";
 const InputWithLabel = ({id, type, name, value, isFocused, onChange, children}) => {
     const inputRef = useRef();
     useEffect(()=> {
-        if (isFocused && inputRef.current){
-            inputRef.current.focus();
-        }
-    }, [isFocused])
+        inputRef.current.focus();
+    })
     
     return (
         <>
@@ -17,7 +15,6 @@ const InputWithLabel = ({id, type, name, value, isFocused, onChange, children}) 
                 type={type}
                 name={name}
                 value={value}
-                autoFocus={isFocused}
                 onChange={onChange}
             />
         </>
