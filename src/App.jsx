@@ -10,7 +10,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(()=> {
-    new Promise((resolve, reject) => 
+    new Promise((resolve) => 
     setTimeout(() => resolve( { data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || []}}), 
       2000))
       .then(result => {
