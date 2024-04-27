@@ -3,43 +3,90 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import AddTodoForm from "./AddTodoForm";
+import Spinner from "./Spinner";
 import TodoList from "./TodoList";
+
+const request = async (method, type, body, url) => {
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": type,
+      Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+    },
+    body: body,
+  }
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`Error has ocurred: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(()=> {
-    new Promise((resolve) => 
-    setTimeout(() => resolve( { data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || []}}), 
-      2000))
-      .then(result => {
-        setTodoList(result.data.todoList);
+
+  const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  const getTodos = () => {
+    setIsLoading(true);
+    request('GET', null, null, _apiBase)
+      .then(data => {
+        const todos = data.records.map((todo) => {
+          return {
+            id: todo.id,
+            title: todo.fields.title
+          }
+        });
+        setTodoList(todos);
         setIsLoading(false);
       })
-  }, []);
-  
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-    }
-  }, [todoList]);
-  
-  const addTodo = (newTodo) => {
-    setTodoList([newTodo, ...todoList]);
+  }
+
+  const addTodo = (todoTitle) => {
+    const addedTodo = {
+      fields: {
+        title: todoTitle,
+      },
+    };
+
+    request("POST", "application/json", JSON.stringify(addedTodo), _apiBase)
+      .then((data) => {
+        const postedTodo = {
+          id: data.id,
+          title: data.fields.title
+        }
+        setTodoList([...todoList, postedTodo]);
+      });
   };
-  
-  const removeTodo = (id) =>{
-    const editedTodoList = todoList.filter(todo => todo.id !== id);
-    setTodoList(editedTodoList);
+
+  const removeTodo = (id) => {
+    const removedId = {
+      id: id,
+    };
+
+    request("DELETE", "application/json", JSON.stringify(removedId), `${_apiBase}\/${removedId.id}`)
+      .then(data => {
+        const editedTodoList = todoList.filter(todo => todo.id !== data.id);
+        setTodoList(editedTodoList);
+      });
   }
 
   return (
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? <p>Loading...</p> 
-                  : <TodoList todoList={todoList} onRemoveTodo={removeTodo}/>
+      {isLoading ? <Spinner />
+        : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       }
     </>
   );
