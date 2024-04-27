@@ -6,7 +6,16 @@ import AddTodoForm from "./AddTodoForm";
 import Spinner from "./Spinner";
 import TodoList from "./TodoList";
 
-const request = async (options, url) => {
+const request = async (method, type, body, url) => {
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": type,
+      Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+    },
+    body: body,
+  }
+
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
@@ -30,12 +39,7 @@ const App = () => {
 
   const getTodos = () => {
     setIsLoading(true);
-    request({
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
-      }
-    }, _apiBase)
+    request('GET', null, null, _apiBase)
       .then(data => {
         const todos = data.records.map((todo) => {
           return {
@@ -55,14 +59,7 @@ const App = () => {
       },
     };
 
-    request({
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-      },
-      body: JSON.stringify(addedTodo),
-    }, _apiBase)
+    request("POST", "application/json", JSON.stringify(addedTodo), _apiBase)
       .then((data) => {
         const postedTodo = {
           id: data.id,
@@ -77,14 +74,7 @@ const App = () => {
       id: id,
     };
 
-    request({
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-      },
-      body: JSON.stringify(removedId),
-    }, `${_apiBase}\/${removedId.id}`)
+    request("DELETE", "application/json", JSON.stringify(removedId), `${_apiBase}\/${removedId.id}`)
       .then(data => {
         const editedTodoList = todoList.filter(todo => todo.id !== data.id);
         setTodoList(editedTodoList);
@@ -96,7 +86,7 @@ const App = () => {
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {isLoading ? <Spinner />
-                : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+        : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       }
     </>
   );
