@@ -1,5 +1,6 @@
 import "./App.css";
 
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import AddTodoForm from "./AddTodoForm";
@@ -82,13 +83,20 @@ const App = () => {
   }
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? <Spinner />
-        : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      }
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <h1>Todo List</h1>
+            <AddTodoForm onAddTodo={addTodo} />
+            {isLoading ? <Spinner />
+              : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+            }
+          </>
+        } />
+        <Route path="/new" element={<h1>New Todo List</h1>}/>
+      </Routes>
+    </Router>
   );
 };
 
