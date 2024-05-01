@@ -81,8 +81,8 @@ const TodoContainer = () => {
 
     return (
         <div className="todoWrapper">
-            <h1>Todo List</h1>
             <AddTodoForm onAddTodo={addTodo} />
+            {<h2>You have {todoList.length} things to do</h2>}
             {isLoading ? <Spinner />
                 : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
             }
