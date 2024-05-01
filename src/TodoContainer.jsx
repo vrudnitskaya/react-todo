@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import AddTodoForm from "./AddTodoForm";
+import Search from "./Search";
 import Spinner from "./Spinner";
 import TodoList from "./TodoList";
 
@@ -28,6 +29,7 @@ const request = async (method, type, body, url) => {
 const TodoContainer = () => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
@@ -79,12 +81,20 @@ const TodoContainer = () => {
             });
     }
 
+    const handleSearch = (value) => {
+        setSearchTerm(value);
+    }
+    const searchedTodos = todoList.filter(todo => {
+        return todo.title.toLowerCase().includes(searchTerm.toLowerCase())
+    })
+    
     return (
         <div className="todoWrapper">
+            <Search onSearch={handleSearch} searchTerm={searchTerm}/>
             <AddTodoForm onAddTodo={addTodo} />
             {<h2>You have {todoList.length} things to do</h2>}
             {isLoading ? <Spinner />
-                : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                : <TodoList todoList={searchedTodos} onRemoveTodo={removeTodo} />
             }
         </div>
     )
