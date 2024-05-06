@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
-    const navigate = useNavigate();
     return (
         <div className='mainPageWrapper'>
             <h1>To-Do List App</h1>
-            <button onClick={() => navigate('/todos')}>Let's start!</button>
+            <Link to='/todos'><button onClick={() => navigate('')}>Let's start!</button></Link>
         </div>
     )
 }

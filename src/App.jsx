@@ -7,14 +7,12 @@ import TodoContainer from "./TodoContainer";
 const App = () => {
   return (
     <Router>
-      <>
       <Routes>
         <Route path="/" element={<MainPage/>} />
         <Route path="/todos" element={<TodoContainer/>} />
         <Route path="*" element={<Navigate to="/404" />} />
         <Route path="/404" element={<NotFoundPage />} />
       </Routes>
-      </>
     </Router>
   );
 };
