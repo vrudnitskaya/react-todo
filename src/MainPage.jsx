@@ -4,7 +4,7 @@ const MainPage = () => {
     return (
         <div className='mainPageWrapper'>
             <h1>To-Do List App</h1>
-            <Link to='/todos'><button onClick={() => navigate('')}>Let's start!</button></Link>
+            <Link to='/todos'><button>Let's start!</button></Link>
         </div>
     )
 }
