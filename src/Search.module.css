@@ -1,0 +1,13 @@
+.searchWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.searchWrapper input{
+    width: 350px;
+    height: 40px;
+    font-size: 20px;
+    padding: 20px 15px;
+    border-radius: 8px;
+    margin-top: 25px;
+}

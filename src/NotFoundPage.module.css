@@ -1,0 +1,16 @@
+.notFoundPageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.notFoundPageWrapper img {
+    height: 450px;
+}
+
+.notFoundPageWrapper p, a {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}

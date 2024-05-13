@@ -4,6 +4,7 @@ import AddTodoForm from "./AddTodoForm";
 import Search from "./Search";
 import Spinner from "./Spinner";
 import TodoList from "./TodoList";
+import styles from './TodoContainer.module.css';
 
 const request = async (method, type, body, url) => {
     const options = {
@@ -89,7 +90,7 @@ const TodoContainer = () => {
     })
     
     return (
-        <div className="todoWrapper">
+        <div className={styles.todoWrapper}>
             <Search onSearch={handleSearch} searchTerm={searchTerm}/>
             <AddTodoForm onAddTodo={addTodo} />
             {<h2>You have {todoList.length} things to do</h2>}

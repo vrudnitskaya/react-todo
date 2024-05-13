@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import img from './assets/imgNotFoundPage.jpg';
+import styles from './NotFoundPage.module.css';
 
 const NotFoundPage = () => {
     return (
-        <div className='notFoundPageWrapper'>
+        <div className={styles.notFoundPageWrapper}>
+            <img src={img} alt="Error 404"/>
             <p>Page doesn't exist</p>
             <Link to="/">Back to main page</Link>
         </div>

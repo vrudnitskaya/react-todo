@@ -1,3 +1,22 @@
 .listItem {
-    color: #32367d;
+    color: #023774;
+    margin: 15px 0;
+}
+
+.listItem:hover {
+    color: #1a1e22;
+    cursor: pointer;
+}
+
+.listItem button {
+    padding: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.listItem button:hover {
+    background-color:#aacbff ;
 }
