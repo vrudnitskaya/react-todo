@@ -21,3 +21,17 @@ html, body {
   flex-direction: column;
   justify-content:space-between;
 }
+
+body[data-theme='light']{
+  background-color: #ffffff;
+  --h2-color:#023774;
+  --li-color: #023774;
+  --li-btn-background: #ffffff;
+}
+
+body[data-theme='dark']{
+  background-color: #2d3558;
+  --h2-color:#d6e6ff;
+  --li-color: #d6e6ff;
+  --li-btn-background: #e7e7e7;
+}

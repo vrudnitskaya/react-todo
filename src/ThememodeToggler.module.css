@@ -1,0 +1,24 @@
+.buttonGroup {
+    margin-right: 15px;
+}
+
+.leftBtn, .rightBtn {
+    border: 2px solid #1a2e35;
+    border-radius: 0;
+    font-size: 20px;
+}
+
+.leftBtn { 
+    padding: 5px 8px 1px;
+    border-radius: 8px 0px 0px 8px;
+    border-right: 0;
+}
+
+.rightBtn{
+    padding: 5px 8px 1px;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.leftBtn:focus, .leftBtn:active, .rightBtn:focus, .rightBtn:active  {
+    outline: 3px solid #0e0670;
+}

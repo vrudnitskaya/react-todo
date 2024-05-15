@@ -3,10 +3,11 @@
     display: flex;
     justify-content: center;
 }
+
 .searchWrapper input{
-    width: 350px;
+    width: 345px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
     padding: 20px 15px;
     border-radius: 8px;
     margin-top: 25px;

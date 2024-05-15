@@ -1,5 +1,5 @@
 .footerWrapper {
-    height: 10%;
+    height: 80px;
     background-color: #d6e6ff;
     display: flex;
     flex-direction: column;
@@ -8,6 +8,7 @@
 }
 
 .footerWrapper p {
-    font-size: 16px;
+    font-size: 12px;
     font-family: "League Spartan", sans-serif;
+    padding: 2px;
 }

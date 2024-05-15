@@ -1,10 +1,10 @@
 .listItem {
-    color: #023774;
+    color: var(--li-color);
     margin: 15px 0;
 }
 
 .listItem:hover {
-    color: #1a1e22;
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -15,8 +15,9 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    background-color:var(--li-btn-background)
 }
 
 .listItem button:hover {
-    background-color:#aacbff ;
+    background-color:#aacbff;
 }

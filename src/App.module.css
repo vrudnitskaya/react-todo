@@ -7,23 +7,29 @@ h6 {
     margin: 0;
 }
 
+h1 {
+  font-size: 32px;
+  letter-spacing: 2px;
+  background-color: #d6e6ff;
+}
+
 a {
   text-decoration: none;
   color: #007dfe;
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
   transition: 0.3s ease-in;
 }
 
 a:hover{
   text-decoration: none;
-  color: inherit;
+  color: #becce2;
 }
 
 p {
   margin: 0;
   padding: 0;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 button {
@@ -45,5 +51,10 @@ ul {
 }
 
 li { 
-  font-size: 24px;
+  font-size: 20px;
+}
+
+img {
+  height: 400px;
+  border-radius: 20px;
 }
