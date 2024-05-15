@@ -21,3 +21,9 @@
 .mainPageWrapper button:hover {
     background-color: #d6e6ff;
 }
+
+@media all and (max-width:480px) {
+    .mainPageWrapper h1{
+        top: 90px;
+    }
+}

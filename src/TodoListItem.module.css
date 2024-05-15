@@ -21,3 +21,13 @@
 .listItem button:hover {
     background-color:#aacbff;
 }
+
+@media all and (max-width:480px) {
+    .listItem {
+        margin: 10px 0;
+    }
+    .listItem button {
+        width: 25px;
+        height: 25px;
+        }
+}

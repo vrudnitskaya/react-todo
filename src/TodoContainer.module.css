@@ -18,3 +18,13 @@
         font-size: 24px;
     }
 }
+
+@media all and (max-width:480px) {
+    .todoWrapper {
+        gap: 10px;
+    }
+
+    .todoWrapper h2 {
+        margin-top: 10px;
+    }
+}
