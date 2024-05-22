@@ -5,10 +5,10 @@ import styles from './Header.module.css';
 
 const Header = () => {
     return (
-        <div className={styles.headerWrapper}>
+        <header className={styles.headerWrapper}>
             <Link to="/"><button className={styles.logoBtn}><FaListCheck/></button></Link>
             <ThememodeToggler/>
-        </div>
+        </header>
     );
 }
 
