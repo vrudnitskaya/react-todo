@@ -7,14 +7,6 @@
 
 .form input {
     width: 300px;
-    height: 40px;
-    font-size: 18px;
-    padding: 20px 15px;
-    border-radius: 8px;
-}
-
-.form input:focus {
-    outline-color:#007dfe;
 }
 
 .form button {
@@ -32,11 +24,7 @@
 @media all and (max-width:768px) {
     .form input {
         width: 200px;
-        height: 20px;
-        padding: 15px 10px;
-        font-size: 16px;
     }
-
     .form button {
         font-size: 18px;
         height: 32px;

@@ -1,0 +1,24 @@
+/* svg{
+    margin: 0 auto; 
+    background: none;
+    display: block;
+}
+
+circle{
+    fill: #007dfe;
+    r: 7px;
+    cx:0;
+    cy: 0;
+}
+
+animateTransform{
+    keyTimes: '0 ;1';
+    animation-duration: 1s;
+    repeatCount: 'indefinite';
+}
+
+animate{
+    keyTimes: '0; 1';
+    repeatCount: 'indefinite';
+    animation-duration: 1s;
+} */
