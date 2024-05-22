@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import AddTodoForm from "./AddTodoForm";
-import Search from "./Search";
-import Spinner from "./Spinner";
-import TodoList from "./TodoList";
+import AddTodoForm from "../AddTodoForm/AddTodoForm";
+import Search from "../Search/Search";
+import Spinner from "../Spinner/Spinner";
+import TodoList from "../TodoList/TodoList";
 import styles from './TodoContainer.module.css';
 
 const request = async (method, type, body, url) => {

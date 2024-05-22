@@ -1,10 +1,10 @@
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import Footer from "./Footer";
-import Header from './Header'
-import MainPage from "./MainPage";
-import NotFoundPage from "./NotFoundPage";
-import TodoContainer from "./TodoContainer";
+import Footer from "../Footer/Footer";
+import Header from '../Header/Header'
+import MainPage from "../Pages/MainPage";
+import NotFoundPage from "../Pages/NotFoundPage";
+import TodoContainer from "../TodoContainer/TodoContainer";
 import styles from './App.module.css';
 
 const App = () => {

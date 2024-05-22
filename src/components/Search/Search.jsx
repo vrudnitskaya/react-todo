@@ -1,4 +1,4 @@
-import InputWithLabel from "./InputWithLabel";
+import InputWithLabel from "../InputWithLabel/InputWithLabel";
 import styles from './Search.module.css';
 
 const Search = ({onSearch, searchTerm}) => {

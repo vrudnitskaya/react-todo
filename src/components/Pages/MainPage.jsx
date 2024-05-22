@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import img from './assets/imgMainPage.jpg';
+import img from '../../assets/imgMainPage.jpg';
 import styles from './MainPage.module.css';
 
 const MainPage = () => {

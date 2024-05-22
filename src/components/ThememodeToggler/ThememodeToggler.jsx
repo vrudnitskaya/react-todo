@@ -1,7 +1,7 @@
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
 import styles from './ThememodeToggler.module.css';
-import {useThemeMode} from './useThemeMode';
+import {useThemeMode} from '../../hooks/useThemeMode';
 
 const ThememodeToggler = () => {
     const { theme, setTheme } = useThemeMode();

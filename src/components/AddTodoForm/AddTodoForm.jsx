@@ -1,4 +1,4 @@
-import InputWithLabel from "./InputWithLabel";
+import InputWithLabel from "../InputWithLabel/InputWithLabel";
 import styles from './AddTodoForm.module.css';
 import { useState } from "react";
 
