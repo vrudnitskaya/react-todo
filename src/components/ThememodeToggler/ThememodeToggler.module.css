@@ -8,14 +8,14 @@
     padding: 5px 8px 1px;
 }
 
+.buttonGroup button:focus, .buttonGroup button:active {
+    outline: 3px solid #0e0670;
+}
+
 .leftBtn {
     border-radius: 8px 0px 0px 8px;
 }
 
 .rightBtn{
     border-radius: 0px 8px 8px 0px;
-}
-
-.leftBtn:focus, .leftBtn:active, .rightBtn:focus, .rightBtn:active  {
-    outline: 3px solid #0e0670;
 }
