@@ -1,0 +1,33 @@
+.listItem {
+    color: var(--li-color);
+    margin: 15px 0;
+}
+
+.listItem:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.listItem button {
+    padding: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:var(--li-btn-background)
+}
+
+.listItem button:hover {
+    background-color:#aacbff;
+}
+
+@media all and (max-width:480px) {
+    .listItem {
+        margin: 10px 0;
+    }
+    .listItem button {
+        width: 25px;
+        height: 25px;
+        }
+}

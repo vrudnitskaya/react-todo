@@ -1,0 +1,9 @@
+.spinner {
+    margin: 0 auto; 
+    background: none;
+    display: block;
+}
+
+circle {
+    fill: #007dfe;
+}

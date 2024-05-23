@@ -1,4 +1,5 @@
-import InputWithLabel from "./InputWithLabel";
+import InputWithLabel from "../InputWithLabel/InputWithLabel";
+import styles from './Search.module.css';
 
 const Search = ({onSearch, searchTerm}) => {
     const handleSearchInput = (event) => {
@@ -6,11 +7,15 @@ const Search = ({onSearch, searchTerm}) => {
     };
     
     return (
-        <InputWithLabel
+        <div className={styles.searchWrapper}>
+            <InputWithLabel
             id="search"
             placeholder="Search..."
             value={searchTerm}
-            onChange={handleSearchInput} />
+            onChange={handleSearchInput} 
+            />
+        </div>
+        
     )
 }
 

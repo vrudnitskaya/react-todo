@@ -1,0 +1,14 @@
+.footerWrapper {
+    height: 80px;
+    background-color: #d6e6ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerWrapper p {
+    font-size: 12px;
+    font-family: "League Spartan", sans-serif;
+    padding: 2px;
+}

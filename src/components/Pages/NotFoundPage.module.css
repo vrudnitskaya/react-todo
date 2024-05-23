@@ -1,0 +1,13 @@
+.notFoundPageWrapper {
+    height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.notFoundPageWrapper a {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
