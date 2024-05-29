@@ -1,5 +1,6 @@
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
+import PropTypes from 'prop-types';
 import style from './TodoListItem.module.css';
 import { useState } from "react";
 
@@ -61,4 +62,12 @@ const TodoListItem = ({ title, id, completed, onRemoveTodo, onEditTodo, onChange
     );
 }
 
+TodoListItem.propTypes = {
+    title: PropTypes.string,
+    id: PropTypes.string,
+    completed: PropTypes.bool,
+    onRemoveTodo: PropTypes.func,
+    onEditTodo: PropTypes.func,
+    onChangeStatus: PropTypes.func
+};
 export default TodoListItem;

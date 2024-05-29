@@ -2,7 +2,7 @@ import styles from './Spinner.module.css';
 
 const Spinner = () => {
     return (
-        <svg classname={styles.spinner}
+        <svg className={styles.spinner}
             xmlns="http://www.w3.org/2000/svg" width="150px" height="150px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <g transform="translate(80,50)">
                 <g transform="rotate(0)">
