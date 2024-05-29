@@ -43,9 +43,18 @@ const TodoContainer = () => {
         request('GET', null, null, _apiBase)
             .then(data => {
                 const todos = data.records.map((todo) => {
-                    return {
-                        id: todo.id,
-                        title: todo.fields.title
+                    if (!todo.fields.completed) {
+                        return {
+                            id: todo.id,
+                            title: todo.fields.title,
+                            completed: false
+                        }
+                    } else {
+                        return {
+                            id: todo.id,
+                            title: todo.fields.title,
+                            completed: todo.fields.completed
+                        };
                     }
                 });
                 setTodoList(todos);
@@ -88,14 +97,64 @@ const TodoContainer = () => {
     const searchedTodos = todoList.filter(todo => {
         return todo.title.toLowerCase().includes(searchTerm.toLowerCase())
     })
-    
+
+    const editTodo = (id, newTitle) => {
+        const editedTodo = {
+            fields: {
+                title: newTitle,
+            },
+        };
+
+        request("PATCH", "application/json", JSON.stringify(editedTodo), `${_apiBase}\/${id}`)
+            .then(data => {
+                const editedTodoList = todoList.map(todo => {
+                    if (todo.id === data.id) {
+                        return {
+                            ...todo, title: data.fields.title
+                        }
+                    } else return todo;
+                });
+                setTodoList(editedTodoList);
+            })
+    }
+
+    const changeTodoStatus = (id, value) => {
+        const todoStatus = {
+            fields: {
+                completed: value,
+            },
+        };
+
+        request("PATCH", "application/json", JSON.stringify(todoStatus), `${_apiBase}\/${id}`)
+            .then(data => {
+                const editedTodoList = todoList.map(todo => {
+                    if (todo.id === data.id) {
+                        return data.fields.completed ? { ...todo, completed: data.fields.completed } : { ...todo, completed: false };
+                    } else return todo;
+                });
+                setTodoList(editedTodoList);
+            })
+    }
+
+    let completedTodos = 0;
+    for (let i = 0; i < todoList.length; i++) {
+        if (todoList[i].completed) {
+            completedTodos++;
+        }
+    }
+
     return (
         <div className={styles.todoWrapper}>
-            <Search onSearch={handleSearch} searchTerm={searchTerm}/>
+            <Search onSearch={handleSearch} searchTerm={searchTerm} />
             <AddTodoForm onAddTodo={addTodo} />
-            {<h2>You have {todoList.length} things to do</h2>}
+            {todoList.length - completedTodos == 0 
+                        ? <h2>You have nothing to do</h2> 
+                        : <h2>You have {todoList.length - completedTodos} more things to do, {completedTodos} done</h2>}
             {isLoading ? <Spinner />
-                : <TodoList todoList={searchedTodos} onRemoveTodo={removeTodo} />
+                : <TodoList todoList={searchedTodos}
+                    onRemoveTodo={removeTodo}
+                    onEditTodo={editTodo}
+                    onChangeStatus={changeTodoStatus} />
             }
         </div>
     )

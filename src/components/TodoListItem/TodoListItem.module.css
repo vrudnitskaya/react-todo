@@ -1,11 +1,30 @@
 .listItem {
-    color: var(--li-color);
-    margin: 15px 0;
+    display: flex;
 }
 
-.listItem:hover {
+.checkbox {
+    transform:scale(1.3);
+    margin-right: 5px;
+}
+
+.listItem input {
+    font-size: 20px;
+    padding: 3px 5px;
+    border-radius: 8px;
+}
+
+.listItem input:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.listItem input:disabled{
+    background-color:var(--li-background);
+    border: none;
+}
+
+.checked {
+    text-decoration: line-through;
 }
 
 .listItem button {
@@ -14,12 +33,15 @@
     font-size: 16px;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background-color:var(--li-btn-background)
+    background-color:var(--li-background)
 }
 
-.listItem button:hover {
-    background-color:#aacbff;
+.edit:hover{
+    background-color:#7dedba;
+}
+
+.delete:hover{
+    background-color:#ed7d8a;
 }
 
 @media all and (max-width:480px) {
@@ -29,5 +51,8 @@
     .listItem button {
         width: 25px;
         height: 25px;
-        }
+    }
+    .listItem input {
+        font-size: 16px;
+    }
 }
