@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+import PropTypes from 'prop-types';
 import styles from './InputWithLabel.module.css';
 
 const InputWithLabel = ({id, type, name, value, onChange, placeholder, children}) => {
@@ -7,9 +8,7 @@ const InputWithLabel = ({id, type, name, value, onChange, placeholder, children}
     useEffect(()=> {
         inputRef.current.focus();
     },[])
-    
-    //add empty dependency array for focusing on input just for the first render
-    
+
     return (
         <>
             <label htmlFor={id}>{children}</label>
@@ -24,6 +23,16 @@ const InputWithLabel = ({id, type, name, value, onChange, placeholder, children}
             />
         </>
     );
+};
+
+InputWithLabel.propTypes = {
+    id: PropTypes.string,
+    type: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    children: PropTypes.object,
+    placeholder: PropTypes.string
 };
 
 export default InputWithLabel;

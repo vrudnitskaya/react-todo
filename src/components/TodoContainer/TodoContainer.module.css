@@ -1,5 +1,4 @@
 .todoWrapper {
-    height: calc(100vh - 200px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,5 +25,6 @@
 
     .todoWrapper h2 {
         margin-top: 10px;
+        font-size: 20px;
     }
 }

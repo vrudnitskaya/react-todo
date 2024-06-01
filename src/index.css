@@ -12,6 +12,8 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--background-color);
+  transition: background-color 200ms linear;
 }
 
 #root {
@@ -19,19 +21,23 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  /* justify-content:space-between; */
 }
 
 body[data-theme='light']{
-  background-color: #ffffff;
+  --background-color: #ffffff;
   --h2-color:#023774;
-  --li-color: #023774;
-  --li-btn-background: #ffffff;
+  --li-background: #ffffff;
+  --li-border: #023774;
 }
 
 body[data-theme='dark']{
-  background-color: #2d3558;
-  --h2-color:#d6e6ff;
-  --li-color: #d6e6ff;
-  --li-btn-background: #e7e7e7;
+  --background-color: #2d3558;
+  --h2-color:#e7e7e7;
+  --li-background: #e7e7e7;
+  --li-border: #ffffff;
+}
+
+main {
+  flex: 1;
 }
