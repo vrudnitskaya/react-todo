@@ -38,7 +38,11 @@ const TodoListItem = ({ title, id, completed, onRemoveTodo, onEditTodo, onChange
 
     return (
         <li className={style.listItem}>
-            <input className={style.checkbox} type="checkbox" name="doneCheckbox" onChange={handleCheckboxChecked} checked={isChecked ? isChecked : false} />
+            <input className={style.checkbox} 
+                type="checkbox" 
+                name="doneCheckbox" 
+                onChange={handleCheckboxChecked} 
+                checked={isChecked} />
 
             <input type="text"
                 name="editTitle"

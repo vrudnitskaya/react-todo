@@ -21,21 +21,23 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  /* justify-content:space-between; */
 }
 
 body[data-theme='light']{
   --background-color: #ffffff;
   --h2-color:#023774;
   --li-background: #ffffff;
+  --li-border: #023774;
 }
 
 body[data-theme='dark']{
   --background-color: #2d3558;
   --h2-color:#e7e7e7;
   --li-background: #e7e7e7;
+  --li-border: #ffffff;
 }
 
-main{
-  height: calc(100% - 16%);
+main {
+  flex: 1;
 }

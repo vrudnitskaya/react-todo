@@ -1,5 +1,5 @@
 .headerWrapper {
-    height: 8%;
+    min-height: 60px;
     background-color: #d6e6ff;
     display: flex;
     align-items: center;

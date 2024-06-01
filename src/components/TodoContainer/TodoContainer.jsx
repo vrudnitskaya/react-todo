@@ -43,19 +43,9 @@ const TodoContainer = () => {
         request('GET', null, null, _apiBase)
             .then(data => {
                 const todos = data.records.map((todo) => {
-                    if (!todo.fields.completed) {
-                        return {
-                            id: todo.id,
-                            title: todo.fields.title,
-                            completed: false
-                        }
-                    } else {
-                        return {
-                            id: todo.id,
-                            title: todo.fields.title,
-                            completed: todo.fields.completed
-                        };
-                    }
+                    return todo.fields.completed 
+                                ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed } 
+                                : { id: todo.id, title: todo.fields.title, completed: false };
                 });
                 setTodoList(todos);
                 setIsLoading(false);
@@ -136,20 +126,15 @@ const TodoContainer = () => {
             })
     }
 
-    let completedTodos = 0;
-    for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i].completed) {
-            completedTodos++;
-        }
-    }
+    let completedTodos = todoList.filter(todo => todo.completed);
 
     return (
         <div className={styles.todoWrapper}>
             <Search onSearch={handleSearch} searchTerm={searchTerm} />
             <AddTodoForm onAddTodo={addTodo} />
-            {todoList.length - completedTodos == 0 
+            {todoList.length  == completedTodos.length
                         ? <h2>You have nothing to do</h2> 
-                        : <h2>You have {todoList.length - completedTodos} more things to do, {completedTodos} done</h2>}
+                        : <h2>You have {todoList.length - completedTodos.length} more things to do, {completedTodos.length} done</h2>}
             {isLoading ? <Spinner />
                 : <TodoList todoList={searchedTodos}
                     onRemoveTodo={removeTodo}

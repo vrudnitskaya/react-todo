@@ -1,5 +1,6 @@
 .footerWrapper {
-    height: 8%;
+    height: 60px;
+    width: 100%;
     background-color: #d6e6ff;
     display: flex;
     flex-direction: column;
