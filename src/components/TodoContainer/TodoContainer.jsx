@@ -42,7 +42,8 @@ const TodoContainer = () => {
         setIsLoading(true);
         request('GET', null, null, _apiBase)
             .then(data => {
-                const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
+                const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? 1 : -1)
+                // const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
                     .map((todo) => {
                         return todo.fields.completed
                             ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed }
