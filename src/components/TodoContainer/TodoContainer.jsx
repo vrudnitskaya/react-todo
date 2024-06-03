@@ -32,7 +32,7 @@ const TodoContainer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?sort[0][field]=title&sort[0][direction]=asc`;
+    const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
     useEffect(() => {
         getTodos();
@@ -42,11 +42,12 @@ const TodoContainer = () => {
         setIsLoading(true);
         request('GET', null, null, _apiBase)
             .then(data => {
-                const todos = data.records.map((todo) => {
-                    return todo.fields.completed 
-                                ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed } 
-                                : { id: todo.id, title: todo.fields.title, completed: false };
-                });
+                const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
+                    .map((todo) => {
+                        return todo.fields.completed
+                            ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed }
+                            : { id: todo.id, title: todo.fields.title, completed: false };
+                    });
                 setTodoList(todos);
                 setIsLoading(false);
             })
@@ -132,9 +133,9 @@ const TodoContainer = () => {
         <div className={styles.todoWrapper}>
             <Search onSearch={handleSearch} searchTerm={searchTerm} />
             <AddTodoForm onAddTodo={addTodo} />
-            {todoList.length  == completedTodos.length
-                        ? <h2>You have nothing to do</h2> 
-                        : <h2>You have {todoList.length - completedTodos.length} more things to do, {completedTodos.length} done</h2>}
+            {todoList.length == completedTodos.length
+                ? <h2>You have nothing to do</h2>
+                : <h2>You have {todoList.length - completedTodos.length} more things to do, {completedTodos.length} done</h2>}
             {isLoading ? <Spinner />
                 : <TodoList todoList={searchedTodos}
                     onRemoveTodo={removeTodo}
