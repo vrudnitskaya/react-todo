@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import style from './TodoListItem.module.css';
 import { useState } from "react";
 
-const TodoListItem = ({ title, id, completed, onRemoveTodo, onEditTodo, onChangeStatus }) => {
+const TodoListItem = ({ title, id, completed, date, onRemoveTodo, onEditTodo, onChangeStatus }) => {
     const [isDisabled, setIsDisabled] = useState(true);
     const [newTitle, setNewTitle] = useState(title);
     const [isChecked, setIsChecked] = useState(completed);
@@ -36,32 +36,37 @@ const TodoListItem = ({ title, id, completed, onRemoveTodo, onEditTodo, onChange
 
     const checkedStyle = isChecked ? style.checked : '';
 
+    const createdDate = new Date(date).toLocaleString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric'});
+
     return (
-        <li className={style.listItem}>
-            <input className={style.checkbox} 
-                type="checkbox" 
-                name="doneCheckbox" 
-                onChange={handleCheckboxChecked} 
-                checked={isChecked} />
+        <li>
+            <span className={style.listItem}>
+                <input className={style.checkbox}
+                    type="checkbox"
+                    name="doneCheckbox"
+                    onChange={handleCheckboxChecked}
+                    checked={isChecked} />
 
-            <input type="text"
-                name="editTitle"
-                value={newTitle}
-                className={checkedStyle}
-                disabled={isDisabled}
-                onChange={handleTitleChange}
-                onKeyDown={handleKeyPress} />
+                <input type="text"
+                    name="editTitle"
+                    value={newTitle}
+                    className={checkedStyle}
+                    disabled={isDisabled}
+                    onChange={handleTitleChange}
+                    onKeyDown={handleKeyPress} />
 
-            <button type="button"
-                className={style.edit}
-                onClick={handleClickEditBtn}>
-                <MdOutlineEdit />
-            </button>
-            <button type="button"
-                className={style.delete}
-                onClick={() => onRemoveTodo(id)}>
-                <MdDeleteOutline />
-            </button>
+                <button type="button"
+                    className={style.edit}
+                    onClick={handleClickEditBtn}>
+                    <MdOutlineEdit />
+                </button>
+                <button type="button"
+                    className={style.delete}
+                    onClick={() => onRemoveTodo(id)}>
+                    <MdDeleteOutline />
+                </button>
+            </span>
+            <span className={style.date}>Created {createdDate}</span>
         </li>
     );
 }
@@ -74,4 +79,5 @@ TodoListItem.propTypes = {
     onEditTodo: PropTypes.func,
     onChangeStatus: PropTypes.func
 };
+
 export default TodoListItem;

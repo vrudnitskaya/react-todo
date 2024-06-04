@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import Search from "../Search/Search";
+import Sorting from "../Sorting/Sorting";
 import Spinner from "../Spinner/Spinner";
 import TodoList from "../TodoList/TodoList";
 import styles from './TodoContainer.module.css';
@@ -42,18 +43,17 @@ const TodoContainer = () => {
         setIsLoading(true);
         request('GET', null, null, _apiBase)
             .then(data => {
-                const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? 1 : -1)
-                // const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
-                    .map((todo) => {
-                        return todo.fields.completed
-                            ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed }
-                            : { id: todo.id, title: todo.fields.title, completed: false };
-                    });
+                const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
+                        .map((todo) => {
+                                return todo.fields.completed
+                                    ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed, date: todo.createdTime}
+                                    : { id: todo.id, title: todo.fields.title, completed: false, date: todo.createdTime };
+                            });
                 setTodoList(todos);
                 setIsLoading(false);
             })
     }
-
+    
     const addTodo = (todoTitle) => {
         const addedTodo = {
             fields: {
@@ -130,10 +130,30 @@ const TodoContainer = () => {
 
     let completedTodos = todoList.filter(todo => todo.completed);
 
+    const sortTodos = (value) => {
+        switch (value) {
+            case "titleAsc":
+                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? -1 : 1));
+                break;
+            case "titleDesc":
+                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? 1 : -1));
+                break;
+            case "dateAsc":
+                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => new Date(a.date) - new Date(b.date)));
+                break;
+            case "dateDesc":
+                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => new Date(b.date) - new Date(a.date)));;
+                break;
+            default:
+                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? -1 : 1));
+        }
+    }
+
     return (
         <div className={styles.todoWrapper}>
             <Search onSearch={handleSearch} searchTerm={searchTerm} />
             <AddTodoForm onAddTodo={addTodo} />
+            <Sorting onSort={sortTodos} />
             {todoList.length == completedTodos.length
                 ? <h2>You have nothing to do</h2>
                 : <h2>You have {todoList.length - completedTodos.length} more things to do, {completedTodos.length} done</h2>}
