@@ -65,9 +65,10 @@ const TodoContainer = () => {
             .then((data) => {
                 const postedTodo = {
                     id: data.id,
-                    title: data.fields.title
+                    title: data.fields.title,
+                    date: new Date(data.createdTime).toLocaleString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric'})
                 }
-                setTodoList([...todoList, postedTodo]);
+                setTodoList([...todoList, postedTodo].sort((a, b) => a.title < b.title ? -1 : 1));
             });
     };
 

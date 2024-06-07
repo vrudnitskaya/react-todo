@@ -4,7 +4,7 @@ import styles from './Sorting.module.css';
 const Sorting = ({onSort}) => {
     const handleOption = (value) => {
         onSort(value);
-    }
+    };
     
     return (
         <select id='sorting' className={styles.sorting} onChange={e => handleOption(e.target.value)}>
