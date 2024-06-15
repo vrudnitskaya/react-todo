@@ -133,9 +133,6 @@ const TodoContainer = () => {
 
     const sortTodos = (value) => {
         switch (value) {
-            case "titleAsc":
-                setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? -1 : 1));
-                break;
             case "titleDesc":
                 setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? 1 : -1));
                 break;
@@ -146,6 +143,7 @@ const TodoContainer = () => {
                 setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => new Date(b.date) - new Date(a.date)));;
                 break;
             default:
+                //default sorting by "titleAsc"
                 setTodoList(prevTodoList => [...prevTodoList].sort((a, b) => a.title < b.title ? -1 : 1));
         }
     }

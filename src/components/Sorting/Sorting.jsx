@@ -10,8 +10,8 @@ const Sorting = ({onSort}) => {
         <select id='sorting' className={styles.sorting} onChange={e => handleOption(e.target.value)}>
             <option value="titleAsc"> Sort by title (A-Z)</option>
             <option value="titleDesc">Sort by title (Z-A)</option>
-            <option value="dateAsc">Sort by date(oldest first)</option>
-            <option value="dateDesc">Sort by date( newest first)</option>
+            <option value="dateAsc">Sort by date (oldest first)</option>
+            <option value="dateDesc">Sort by date (newest first)</option>
         </select>
     );
 }
