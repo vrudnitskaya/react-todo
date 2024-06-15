@@ -56,6 +56,10 @@ ul {
 
 li { 
   font-size: 20px;
+  border: 1px solid var(--li-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 img {

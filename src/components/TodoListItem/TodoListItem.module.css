@@ -1,9 +1,7 @@
 .listItem {
     display: flex;
     align-items:center;
-    padding: 10px 20px;
-    border: 1px solid var(--li-border);
-    border-radius: 8px
+    padding: 10px 20px 0px;
 }
 
 .checkbox {
@@ -48,9 +46,18 @@
     background-color:#ed7d8a;
 }
 
+.date {
+    font-size: 16px;
+    margin: 0px 0px 3px 35px;
+    color: #bab9b9;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
 @media all and (max-width:480px) {
     .listItem {
-        margin: 10px 0;
+        padding: 3px 10px 0px;
     }
     .listItem button {
         width: 25px;
@@ -58,5 +65,8 @@
     }
     .listItem input {
         font-size: 16px;
+    }
+    .date{
+        font-size: 10px;
     }
 }
