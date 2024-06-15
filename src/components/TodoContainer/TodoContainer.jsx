@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
+import FilterList from "../Filter/Filter";
 import Search from "../Search/Search";
 import Sorting from "../Sorting/Sorting";
 import Spinner from "../Spinner/Spinner";
@@ -32,6 +33,13 @@ const TodoContainer = () => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [filter, setFilter] = useState('All');
+
+    const FILTER_MAP = {
+        All: () => true,
+        Active: (todo) => !todo.completed,
+        Completed: (todo) => todo.completed,
+    };
 
     const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
@@ -44,16 +52,16 @@ const TodoContainer = () => {
         request('GET', null, null, _apiBase)
             .then(data => {
                 const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
-                        .map((todo) => {
-                                return todo.fields.completed
-                                    ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed, date: todo.createdTime}
-                                    : { id: todo.id, title: todo.fields.title, completed: false, date: todo.createdTime };
-                            });
+                    .map((todo) => {
+                        return todo.fields.completed
+                            ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed, date: todo.createdTime }
+                            : { id: todo.id, title: todo.fields.title, completed: false, date: todo.createdTime };
+                    });
                 setTodoList(todos);
                 setIsLoading(false);
             })
     }
-    
+
     const addTodo = (todoTitle) => {
         const addedTodo = {
             fields: {
@@ -66,7 +74,7 @@ const TodoContainer = () => {
                 const postedTodo = {
                     id: data.id,
                     title: data.fields.title,
-                    date: new Date(data.createdTime).toLocaleString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric'})
+                    date: new Date(data.createdTime).toLocaleString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric' })
                 }
                 setTodoList([...todoList, postedTodo].sort((a, b) => a.title < b.title ? -1 : 1));
             });
@@ -153,6 +161,7 @@ const TodoContainer = () => {
             <Search onSearch={handleSearch} searchTerm={searchTerm} />
             <AddTodoForm onAddTodo={addTodo} />
             <Sorting onSort={sortTodos} />
+            <FilterList filters={FILTER_MAP} setFilter={setFilter} />
             {todoList.length == completedTodos.length
                 ? <h2>You have nothing to do</h2>
                 : <h2>You have {todoList.length - completedTodos.length} more things to do, {completedTodos.length} done</h2>}
@@ -160,7 +169,9 @@ const TodoContainer = () => {
                 : <TodoList todoList={searchedTodos}
                     onRemoveTodo={removeTodo}
                     onEditTodo={editTodo}
-                    onChangeStatus={changeTodoStatus} />
+                    onChangeStatus={changeTodoStatus}
+                    filters={FILTER_MAP}
+                    filter={filter} />
             }
         </div>
     )
