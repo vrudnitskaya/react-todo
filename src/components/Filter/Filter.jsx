@@ -19,7 +19,7 @@ const FilterList = ({ setFilter }) => {
             <button value='Completed'
                 onClick={handleFilterClick}
                 className={style.rightBtn}>
-                Completed
+                Done
             </button>
         </div>
     )
