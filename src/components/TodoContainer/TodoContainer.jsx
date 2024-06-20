@@ -35,17 +35,11 @@ const TodoContainer = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('All');
 
-    const FILTER_MAP = {
-        All: () => true,
-        Active: (todo) => !todo.completed,
-        Completed: (todo) => todo.completed,
-    };
-
     const _apiBase = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
     useEffect(() => {
         getTodos();
-    }, []);
+    }, [filter]);
 
     const getTodos = () => {
         setIsLoading(true);
@@ -170,8 +164,8 @@ const TodoContainer = () => {
                     onRemoveTodo={removeTodo}
                     onEditTodo={editTodo}
                     onChangeStatus={changeTodoStatus}
-                    filters={FILTER_MAP}
-                    filter={filter} />
+                    filter={filter} 
+                    />
             }
         </div>
     )

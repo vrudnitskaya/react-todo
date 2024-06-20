@@ -3,20 +3,20 @@ import style from './Filter.module.css';
 
 const FilterList = ({ setFilter, filter }) => {
     const buttonsData = [
-        {name: 'All', label: 'All'},
-        {name: 'Active', label: 'Active'},
-        {name: 'Completed', label: 'Done'},
+        {id: 'All', label: 'All'},
+        {id: 'Active', label: 'Active'},
+        {id: 'Completed', label: 'Done'},
         
     ];
 
-    const buttons = buttonsData.map(({name, label}) => {
-        const active = filter === name;
+    const buttons = buttonsData.map(({id, label}) => {
+        const active = filter === id;
         const clazz = active ? `${style.active}` : '';
         return (
             <button type="button" 
             className={`${style.button} ${clazz}`}
-                    key={name}
-                    onClick={() => setFilter(name)}>
+                    key={id}
+                    onClick={() => setFilter(id)}>
                     {label}
             </button>
         )
