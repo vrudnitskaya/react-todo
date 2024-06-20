@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import TodoListItem from "../TodoListItem/TodoListItem";
 
-const TodoList = ({ todoList, onRemoveTodo, onEditTodo, onChangeStatus }) => {
+const FILTER_MAP = {
+    All: () => true,
+    Active: (todo) => !todo.completed,
+    Completed: (todo) => todo.completed,
+};
+
+const TodoList = ({ todoList, onRemoveTodo, onEditTodo, onChangeStatus, filter }) => {
     return (
         <ul>
-            {todoList.map(todo => {
+            {todoList.filter(FILTER_MAP[filter]).map(todo => {
                 return (
                     <TodoListItem key={todo.id} {...todo}
                         onRemoveTodo={onRemoveTodo}
@@ -20,7 +26,9 @@ TodoList.propTypes = {
     todoList: PropTypes.array,
     onRemoveTodo: PropTypes.func,
     onEditTodo: PropTypes.func,
-    onChangeStatus: PropTypes.func
+    onChangeStatus: PropTypes.func,
+    filters:PropTypes.object,
+    filter:PropTypes.string,
 }
 
 export default TodoList;

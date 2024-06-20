@@ -28,6 +28,7 @@ body[data-theme='light']{
   --h2-color:#023774;
   --li-background: #ffffff;
   --li-border: #023774;
+  --filter-background: #ffffff;
 }
 
 body[data-theme='dark']{
@@ -35,6 +36,7 @@ body[data-theme='dark']{
   --h2-color:#e7e7e7;
   --li-background: #e7e7e7;
   --li-border: #ffffff;
+  --filter-background: #e7e7e7;
 }
 
 main {
