@@ -1,4 +1,4 @@
-.filter button {
+.button {
     border: 1px solid #000000;
     width: 50px;
     padding: 5px 0;
@@ -6,19 +6,19 @@
     font-size: 16px;
 }
 
-.filter button:focus, .filter button:active {
+.active {
     background-color: #d6e6ff;
 }
 
-.leftBtn {
+button:nth-child(1) {
     border-radius: 8px 0px 0px 8px;
 }
 
-.middleBtn {
+button:nth-child(2) {
     border-radius: 0;
 }
 
-.rightBtn{
+button:nth-child(3){
     border-radius: 0px 8px 8px 0px;
 }
 

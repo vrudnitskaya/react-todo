@@ -53,9 +53,7 @@ const TodoContainer = () => {
             .then(data => {
                 const todos = data.records.sort((a, b) => a.fields.title < b.fields.title ? -1 : 1)
                     .map((todo) => {
-                        return todo.fields.completed
-                            ? { id: todo.id, title: todo.fields.title, completed: todo.fields.completed, date: todo.createdTime }
-                            : { id: todo.id, title: todo.fields.title, completed: false, date: todo.createdTime };
+                        return { id: todo.id, title: todo.fields.title, completed: todo.fields.completed || false, date: todo.createdTime };
                     });
                 setTodoList(todos);
                 setIsLoading(false);
@@ -162,7 +160,7 @@ const TodoContainer = () => {
             <AddTodoForm onAddTodo={addTodo} />
             <div className={styles.sortFilterWrapper}>
                 <Sorting onSort={sortTodos} />
-                <FilterList filters={FILTER_MAP} setFilter={setFilter} />
+                <FilterList setFilter={setFilter} filter={filter}/>
             </div>
             {todoList.length == completedTodos.length
                 ? <h2>You have nothing to do</h2>
