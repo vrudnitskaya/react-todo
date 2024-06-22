@@ -75,6 +75,7 @@ TodoListItem.propTypes = {
     title: PropTypes.string,
     id: PropTypes.string,
     completed: PropTypes.bool,
+    date: PropTypes.string,
     onRemoveTodo: PropTypes.func,
     onEditTodo: PropTypes.func,
     onChangeStatus: PropTypes.func

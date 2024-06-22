@@ -27,7 +27,6 @@ TodoList.propTypes = {
     onRemoveTodo: PropTypes.func,
     onEditTodo: PropTypes.func,
     onChangeStatus: PropTypes.func,
-    filters:PropTypes.object,
     filter:PropTypes.string,
 }
 

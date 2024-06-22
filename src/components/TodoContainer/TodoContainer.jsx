@@ -39,7 +39,7 @@ const TodoContainer = () => {
 
     useEffect(() => {
         getTodos();
-    }, [filter]);
+    }, []);
 
     const getTodos = () => {
         setIsLoading(true);
